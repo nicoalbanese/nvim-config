@@ -224,7 +224,6 @@ vim.o.mouse = 'a'
 -- remove vim wrap
 vim.o.wrap = false
 
-
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
@@ -519,15 +518,20 @@ cmp.setup {
   },
 }
 
-
 -- custom keymaps for vim tmux navigator
-vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Left Pane" })
-vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Right Pane" })
-vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Down Pane" })
-vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Up Pane" })
-vim.keymap.set("n", "<C-q>", "<cmd> :Bdelete menu<CR>", { desc = "Quit buffers menu" })
-vim.keymap.set("n", "<leader>x", "<cmd> :bd<CR>", { desc = "Quit buffers" })
-vim.keymap.set("n", "<leader>e", "<cmd> :NeoTreeShowToggle<CR>", { desc = "Show explorer" })
+vim.keymap.set('n', '<C-h>', '<cmd> TmuxNavigateLeft<CR>', { desc = 'Left Pane' })
+vim.keymap.set('n', '<C-l>', '<cmd> TmuxNavigateRight<CR>', { desc = 'Right Pane' })
+vim.keymap.set('n', '<C-j>', '<cmd> TmuxNavigateDown<CR>', { desc = 'Down Pane' })
+vim.keymap.set('n', '<C-k>', '<cmd> TmuxNavigateUp<CR>', { desc = 'Up Pane' })
+vim.keymap.set('n', '<C-q>', '<cmd> :Bdelete menu<CR>', { desc = 'Quit buffers menu' })
+vim.keymap.set('n', '<leader>bd', '<cmd> :bd<CR>', { desc = 'Quit buffer' })
+vim.keymap.set('n', '<leader>e', '<cmd> :NvimTreeToggle<CR>', { desc = 'Show explorer' })
+-- vim.keymap.set("n", "<leader>e", "<cmd> :NeoTreeFocusToggle<CR>", { desc = "Show explorer" })
+
+vim.keymap.set('n', 'L', '<cmd> :BufferLineCycleNext<CR>', { desc = 'next tab' })
+vim.keymap.set('n', 'H', '<cmd> :BufferLineCyclePrev<CR>', { desc = 'previous tab' })
+vim.keymap.set('n', '<leader>nt', '<cmd> :NvimTreeRefresh<CR>', { desc = 'Refresh explorer' })
+vim.keymap.set('n', '<leader>rf', '<cmd> :Format<CR>', { desc = '[R]un [F]ormat' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
