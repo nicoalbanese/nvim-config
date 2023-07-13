@@ -22,7 +22,7 @@ Kickstart.nvim is a template for your own configuration.
 
 Kickstart Guide:
 
-I have left several `:help X` comments throughout the init.lua
+I have left several `:help X` yomments throughout the init.lua
 You should run that command and read that help section for more information.
 
 In addition, I have some `NOTE:` items throughout the file.
@@ -170,7 +170,15 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',         opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    config = function()
+      require('Comment').setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      }
+    end,
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -330,9 +338,17 @@ require('nvim-treesitter.configs').setup {
     enable_close_on_slash = true,
   },
   context_commentstring = {
-    enable = true,
+    config = {
+      javascript = {
+        __default = '// %s',
+        jsx_element = '{/* %s */}',
+        jsx_fragment = '{/* %s */}',
+        jsx_attribute = '// %s',
+        comment = '// %s',
+      },
+      typescript = { __default = '// %s', __multiline = '/* %s */' },
+    },
   },
-
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
