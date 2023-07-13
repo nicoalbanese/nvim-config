@@ -89,7 +89,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -113,7 +113,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git releated signs to the eutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -127,8 +127,7 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -555,8 +554,8 @@ vim.keymap.set('n', '<C-h>', '<cmd> TmuxNavigateLeft<CR>', { desc = 'Left Pane' 
 vim.keymap.set('n', '<C-l>', '<cmd> TmuxNavigateRight<CR>', { desc = 'Right Pane' })
 vim.keymap.set('n', '<C-j>', '<cmd> TmuxNavigateDown<CR>', { desc = 'Down Pane' })
 vim.keymap.set('n', '<C-k>', '<cmd> TmuxNavigateUp<CR>', { desc = 'Up Pane' })
-vim.keymap.set('n', '<C-q>', '<cmd> :Bdelete menu<CR>', { desc = 'Quit buffers menu' })
-vim.keymap.set('n', '<leader>bd', '<cmd> :bd<CR>', { desc = 'Quit buffer' })
+-- vim.keymap.set('n', '<C-q>', '<cmd> :Bdelete menu<CR>', { desc = 'Quit buffers menu' })
+vim.keymap.set('n', '<leader>bd', '<cmd> :Bdelete<CR>', { desc = 'Quit buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd> :NvimTreeToggle<CR>', { desc = 'Show explorer' })
 -- vim.keymap.set("n", "<leader>e", "<cmd> :NeoTreeFocusToggle<CR>", { desc = "Show explorer" })
 
