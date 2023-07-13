@@ -41,6 +41,11 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.g.shiftwidth = 2
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -110,7 +115,7 @@ require('lazy').setup({
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',          opts = {} },
   {
-    -- Adds git releated signs to the gutter, as well as utilities for managing changes
+    -- Adds git releated signs to the eutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -188,9 +193,11 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
+      'JoosepAlviste/nvim-ts-context-commentstring',
     },
     build = ':TSUpdate',
   },
+  { 'JoosepAlviste/nvim-ts-context-commentstring' },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -243,7 +250,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 100
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
@@ -312,10 +319,19 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'lua', 'html', 'javascript', 'css', 'tsx', 'typescript', 'vimdoc', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+  autotag = {
+    enable = true,
+    enable_rename = true,
+    enable_close = true,
+    enable_close_on_slash = true,
+  },
+  context_commentstring = {
+    enable = true,
+  },
 
   highlight = { enable = true },
   indent = { enable = true },
@@ -409,7 +425,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<C-D>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -528,10 +544,15 @@ vim.keymap.set('n', '<leader>bd', '<cmd> :bd<CR>', { desc = 'Quit buffer' })
 vim.keymap.set('n', '<leader>e', '<cmd> :NvimTreeToggle<CR>', { desc = 'Show explorer' })
 -- vim.keymap.set("n", "<leader>e", "<cmd> :NeoTreeFocusToggle<CR>", { desc = "Show explorer" })
 
+-- buffer + tree keymaps
 vim.keymap.set('n', 'L', '<cmd> :BufferLineCycleNext<CR>', { desc = 'next tab' })
 vim.keymap.set('n', 'H', '<cmd> :BufferLineCyclePrev<CR>', { desc = 'previous tab' })
 vim.keymap.set('n', '<leader>nt', '<cmd> :NvimTreeRefresh<CR>', { desc = 'Refresh explorer' })
 vim.keymap.set('n', '<leader>rf', '<cmd> :Format<CR>', { desc = '[R]un [F]ormat' })
+
+-- splits setup
+vim.keymap.set('n', '<leader>|', '<cmd>:vsplit<CR>', { desc = 'split vertically' })
+vim.keymap.set('n', '<leader>-', '<cmd>:split<CR>', { desc = 'split horizonally' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
