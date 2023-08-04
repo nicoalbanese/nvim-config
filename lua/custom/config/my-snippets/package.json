@@ -12,6 +12,13 @@
           "javascriptreact"
         ],
         "path": "./snippets/typescriptreact.json"
+      },
+      {
+        "language": [
+          "svelte",
+          "typescript"
+        ],
+        "path": "./snippets/sveltekit.json"
       }
     ]
   }
