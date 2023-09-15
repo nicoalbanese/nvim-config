@@ -15,5 +15,10 @@
       "export default $TM_FILENAME_BASE"
     ],
     "description": "Typescript React Function Component"
+  },
+  "JSON Stringify": {
+    "prefix": "jss",
+    "body": ["JSON.stringify($1, null, 2)"],
+    "description": "JSON stringify"
   }
 }

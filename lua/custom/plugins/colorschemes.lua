@@ -18,4 +18,5 @@ return {
   {
     'Mofiqul/vscode.nvim',
   },
+  -- { 'projekt0n/github-nvim-theme' },
 }

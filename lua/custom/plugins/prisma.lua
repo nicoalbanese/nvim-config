@@ -1,5 +1,6 @@
 return {
   {
-    "prisma/vim-prisma",
+    'prisma/vim-prisma',
+    lazy = true,
   },
 }

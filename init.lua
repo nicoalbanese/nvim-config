@@ -46,6 +46,17 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.cursorline = true
 
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+vim.opt.incsearch = true
+
+vim.opt.scrolloff = 8
+vim.opt.colorcolumn = '100'
+
 -- vim.g.shiftwidth = 2
 -- vim.g.softtabstop = 2
 
@@ -143,7 +154,7 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'kanagawa'
+      vim.cmd.colorscheme 'kanagawa-wave'
     end,
   },
 
@@ -153,8 +164,9 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         -- theme = 'onedark',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
@@ -261,7 +273,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 100
+vim.o.updatetime = 50
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
@@ -585,7 +597,20 @@ vim.keymap.set('n', '<leader>-', '<cmd>:split<CR>', { desc = 'split horizonally'
 
 vim.keymap.set('n', '<leader>ft', '<cmd>:InlineFoldToggle<CR>', { desc = 'inline [f]old [t]oggle' })
 
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'move line up' })
+vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv", { desc = 'Move line down' })
+
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+vim.keymap.set('x', '<leader>P', '"_dP', { desc = 'paste without yanking' })
+
+vim.keymap.set('n', '<leader>rnc', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'rename under cursor' })
+
 vim.g.copilot_assume_mapped = true
+
+-- vim.keymap.set('n', '<M-Up', '<cmd>:m+<CR>', { desc = 'move line' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
