@@ -177,10 +177,16 @@ require('lazy').setup({
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    -- See `:help ibl`
+    main = 'ibl',
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      indent = {
+        char = "┊"
+      },
+      whitespace = {
+        remove_blankline_trail = true,
+
+      }
     },
   },
 
@@ -609,6 +615,10 @@ vim.keymap.set('n', '<leader>rnc', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left
   { desc = 'rename under cursor' })
 
 vim.g.copilot_assume_mapped = true
+
+local discipline = require("custom.config.discipline")
+
+discipline.cowboy()
 
 -- vim.keymap.set('n', '<M-Up', '<cmd>:m+<CR>', { desc = 'move line' })
 
