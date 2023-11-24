@@ -6,6 +6,9 @@ return {
       tab = { sync = { close = true } },
       renderer = { highlight_git = true },
       diagnostics = { enable = true },
+      filters = {
+        dotfiles = true,
+      }
     },
   },
 }
