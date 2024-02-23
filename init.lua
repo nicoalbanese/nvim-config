@@ -587,9 +587,19 @@ vim.keymap.set('n', '<leader>rnc', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left
     { desc = 'rename under cursor' })
 
 vim.keymap.set("n", '<leader>th', "<cmd>:CloakToggle<CR>", { desc = "Toggle Cloak (hide)" })
+vim.keymap.set("n", '<leader>tl', "<cmd>:set background=light<CR>", { desc = "[theme] Turn on light mode" })
+vim.keymap.set("n", '<leader>td', "<cmd>:set background=dark<CR>", { desc = "[theme] Turn on dark mode" })
+vim.keymap.set("n", '<leader>tk', "<cmd>:colorscheme kanagawa-wave<CR>", { desc = "[theme] Switch to Kanagawa" })
+vim.keymap.set("n", '<leader>tv', "<cmd>:colorscheme vscode<CR>", { desc = "[theme] Switch to VScode" })
+vim.api.nvim_set_keymap('n', '<leader>tt', ':colorscheme ', { noremap = true, desc = "toggle theme" })
 
 
-vim.g.copilot_assume_mapped = true
+vim.keymap.set("n", '<M-Up>', "<cmd>:vertical resize +2<CR>", { desc = "Adjust split right" })
+vim.keymap.set("n", '<M-Down>', "<cmd>:vertical resize -2<CR>", { desc = "Adjust split left" })
+
+
+
+-- vim.g.copilot_assume_mapped = true
 
 local discipline = require("custom.config.discipline")
 
