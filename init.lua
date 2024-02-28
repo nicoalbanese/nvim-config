@@ -599,11 +599,19 @@ vim.keymap.set("n", '<M-Down>', "<cmd>:vertical resize -2<CR>", { desc = "Adjust
 
 
 
+vim.keymap.set('i', '<M-Tab>', 'copilot#Accept("\\<CR>")', {
+    expr = true,
+    replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
+
 -- vim.g.copilot_assume_mapped = true
 
 local discipline = require("custom.config.discipline")
 
 discipline.cowboy()
+
+require("ts-error-translator").setup()
 
 -- vim.keymap.set('n', '<M-Up', '<cmd>:m+<CR>', { desc = 'move line' })
 
